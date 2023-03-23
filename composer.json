@@ -1,6 +1,6 @@
 {
-    "name": "react/promise",
-    "description": "A lightweight implementation of CommonJS Promises/A for PHP",
+    "name": "plutonium/promise",
+    "description": "A lightweight implementation of CommonJS Promises/A for PHP adapted to be used under PocketMine-MP",
     "license": "MIT",
     "authors": [
         {
@@ -22,23 +22,29 @@
             "name": "Chris Boden",
             "homepage": "https://cboden.dev/",
             "email": "cboden@gmail.com"
+        },
+        {
+            "name": "Plutonium SAS",
+            "homepage": "https://www.plutonium.best/",
+            "email": "contact@plutonium.best"
         }
     ],
     "require": {
         "php": ">=7.1.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.5 || ^7.5"
+        "phpunit/phpunit": "^9.5 || ^7.5",
+        "pocketmine/pocketmine-mp": "^4.0 || ^5.0"
     },
     "autoload": {
         "psr-4": {
-            "React\\Promise\\": "src/"
+            "Plutonium\\Promise\\": "src/"
         },
         "files": ["src/functions_include.php"]
     },
     "autoload-dev": {
         "psr-4": {
-            "React\\Promise\\": [
+            "Plutonium\\Promise\\": [
                 "tests/fixtures/",
                 "tests/"
             ]
@@ -46,6 +52,8 @@
     },
     "keywords": [
         "promise",
-        "promises"
+        "promises",
+        "pocketmine",
+        "pocketmine-mp"
     ]
 }

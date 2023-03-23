@@ -1,14 +1,14 @@
 <?php
 
-namespace React\Promise\PromiseTest;
+namespace Plutonium\Promise\PromiseTest;
 
 use Exception;
 use LogicException;
-use React\Promise;
-use React\Promise\PromiseAdapter\PromiseAdapterInterface;
+use Plutonium\Promise;
+use Plutonium\Promise\PromiseAdapter\PromiseAdapterInterface;
 use stdClass;
-use function React\Promise\reject;
-use function React\Promise\resolve;
+use function Plutonium\Promise\reject;
+use function Plutonium\Promise\resolve;
 
 trait ResolveTestTrait
 {

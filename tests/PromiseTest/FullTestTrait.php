@@ -1,6 +1,6 @@
 <?php
 
-namespace React\Promise\PromiseTest;
+namespace Plutonium\Promise\PromiseTest;
 
 trait FullTestTrait
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace React\Promise\PromiseTest;
+namespace Plutonium\Promise\PromiseTest;
 
-use React\Promise\PromiseAdapter\PromiseAdapterInterface;
-use React\Promise\PromiseInterface;
+use Plutonium\Promise\PromiseAdapter\PromiseAdapterInterface;
+use Plutonium\Promise\PromiseInterface;
 
 trait PromiseSettledTestTrait
 {

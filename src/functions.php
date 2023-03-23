@@ -1,10 +1,10 @@
 <?php
 
-namespace React\Promise;
+namespace Plutonium\Promise;
 
-use React\Promise\Exception\CompositeException;
-use React\Promise\Internal\FulfilledPromise;
-use React\Promise\Internal\RejectedPromise;
+use Plutonium\Promise\Exception\CompositeException;
+use Plutonium\Promise\Internal\FulfilledPromise;
+use Plutonium\Promise\Internal\RejectedPromise;
 
 /**
  * Creates a promise for the supplied `$promiseOrValue`.
@@ -150,7 +150,7 @@ function race(iterable $promisesOrValues): PromiseInterface
  * The returned promise will only reject if *all* items in `$promisesOrValues` are
  * rejected. The rejection value will be an array of all rejection reasons.
  *
- * The returned promise will also reject with a `React\Promise\Exception\LengthException`
+ * The returned promise will also reject with a `Plutonium\Promise\Exception\LengthException`
  * if `$promisesOrValues` contains 0 items.
  *
  * @param iterable $promisesOrValues

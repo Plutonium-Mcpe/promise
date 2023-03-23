@@ -1,6 +1,6 @@
 <?php
 
-namespace React\Promise\Exception;
+namespace Plutonium\Promise\Exception;
 
 /**
  * Represents an exception that is a composite of one or more other exceptions.

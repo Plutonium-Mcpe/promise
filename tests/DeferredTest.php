@@ -1,8 +1,8 @@
 <?php
 
-namespace React\Promise;
+namespace Plutonium\Promise;
 
-use React\Promise\PromiseAdapter\CallbackPromiseAdapter;
+use Plutonium\Promise\PromiseAdapter\CallbackPromiseAdapter;
 
 class DeferredTest extends TestCase
 {

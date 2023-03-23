@@ -1,8 +1,8 @@
 <?php
 
-namespace React\Promise\PromiseAdapter;
+namespace Plutonium\Promise\PromiseAdapter;
 
-use React\Promise\PromiseInterface;
+use Plutonium\Promise\PromiseInterface;
 
 interface PromiseAdapterInterface
 {

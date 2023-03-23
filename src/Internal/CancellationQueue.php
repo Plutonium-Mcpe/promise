@@ -1,6 +1,6 @@
 <?php
 
-namespace React\Promise\Internal;
+namespace Plutonium\Promise\Internal;
 
 /**
  * @internal

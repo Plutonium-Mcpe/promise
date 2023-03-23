@@ -1,8 +1,8 @@
 <?php
 
-namespace React\Promise;
+namespace Plutonium\Promise;
 
-use React\Promise\Internal\RejectedPromise;
+use Plutonium\Promise\Internal\RejectedPromise;
 
 class SimpleFulfilledTestThenable
 {

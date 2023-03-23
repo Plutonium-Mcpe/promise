@@ -1,9 +1,9 @@
 <?php
 
-namespace React\Promise\Internal;
+namespace Plutonium\Promise\Internal;
 
-use React\Promise\PromiseInterface;
-use function React\Promise\resolve;
+use Plutonium\Promise\PromiseInterface;
+use function Plutonium\Promise\resolve;
 
 /**
  * @internal
@@ -15,7 +15,7 @@ final class FulfilledPromise implements PromiseInterface
     public function __construct($value = null)
     {
         if ($value instanceof PromiseInterface) {
-            throw new \InvalidArgumentException('You cannot create React\Promise\FulfilledPromise with a promise. Use React\Promise\resolve($promiseOrValue) instead.');
+            throw new \InvalidArgumentException('You cannot create Plutonium\Promise\FulfilledPromise with a promise. Use Plutonium\Promise\resolve($promiseOrValue) instead.');
         }
 
         $this->value = $value;

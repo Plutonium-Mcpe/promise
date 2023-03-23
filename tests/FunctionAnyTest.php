@@ -1,10 +1,10 @@
 <?php
 
-namespace React\Promise;
+namespace Plutonium\Promise;
 
 use Exception;
-use React\Promise\Exception\CompositeException;
-use React\Promise\Exception\LengthException;
+use Plutonium\Promise\Exception\CompositeException;
+use Plutonium\Promise\Exception\LengthException;
 
 class FunctionAnyTest extends TestCase
 {

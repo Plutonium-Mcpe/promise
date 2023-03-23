@@ -1,13 +1,13 @@
 <?php
 
-namespace React\Promise\Internal;
+namespace Plutonium\Promise\Internal;
 
 use InvalidArgumentException;
 use LogicException;
-use React\Promise\PromiseAdapter\CallbackPromiseAdapter;
-use React\Promise\PromiseTest\PromiseFulfilledTestTrait;
-use React\Promise\PromiseTest\PromiseSettledTestTrait;
-use React\Promise\TestCase;
+use Plutonium\Promise\PromiseAdapter\CallbackPromiseAdapter;
+use Plutonium\Promise\PromiseTest\PromiseFulfilledTestTrait;
+use Plutonium\Promise\PromiseTest\PromiseSettledTestTrait;
+use Plutonium\Promise\TestCase;
 
 class FulfilledPromiseTest extends TestCase
 {
@@ -32,7 +32,7 @@ class FulfilledPromiseTest extends TestCase
                 }
             },
             'reject' => function () {
-                throw new LogicException('You cannot call reject() for React\Promise\FulfilledPromise');
+                throw new LogicException('You cannot call reject() for Plutonium\Promise\FulfilledPromise');
             },
             'settle' => function ($value = null) use (&$promise) {
                 if (!$promise) {

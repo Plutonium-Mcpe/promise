@@ -1,6 +1,6 @@
 <?php
 
-namespace React\Promise\Exception;
+namespace Plutonium\Promise\Exception;
 
 class LengthException extends \LengthException
 {

@@ -1,19 +1,10 @@
 Promise
 =======
 
-A lightweight implementation of
-[CommonJS Promises/A](http://wiki.commonjs.org/wiki/Promises/A) for PHP.
-
 [![CI status](https://github.com/reactphp/promise/workflows/CI/badge.svg)](https://github.com/reactphp/promise/actions)
 [![installs on Packagist](https://img.shields.io/packagist/dt/react/promise?color=blue&label=installs%20on%20Packagist)](https://packagist.org/packages/react/promise)
 
-> **Development version:** This branch contains the code for the upcoming 3.0 release.
-> For the code of the current stable 2.x release, check out the
-> [`2.x` branch](https://github.com/reactphp/promise/tree/2.x).
->
-> The upcoming 3.0 release will be the way forward for this package.
-> However, we will still actively support 2.0 and 1.0 for those not yet
-> on PHP 7.1+.
+> **Initially based on [ReactPHP Promise](https://github.com/reactphp/promise) but adapted for use under [PocketMine-MP](https://github.com/pmmp/PocketMine-MP)**
 
 Table of Contents
 -----------------
@@ -87,7 +78,7 @@ A deferred represents an operation whose resolution is pending. It has separate
 promise and resolver parts.
 
 ```php
-$deferred = new React\Promise\Deferred();
+$deferred = new Plutonium\Promise\Deferred();
 
 $promise = $deferred->promise();
 
@@ -316,7 +307,7 @@ $canceller = function () {
     throw new Exception('Promise cancelled');
 };
 
-$promise = new React\Promise\Promise($resolver, $canceller);
+$promise = new Plutonium\Promise\Promise($resolver, $canceller);
 ```
 
 The promise constructor receives a resolver function and an optional canceller
@@ -347,7 +338,7 @@ promise, all promises in the collection are cancelled.
 #### resolve()
 
 ```php
-$promise = React\Promise\resolve(mixed $promiseOrValue);
+$promise = Plutonium\Promise\resolve(mixed $promiseOrValue);
 ```
 
 Creates a promise for the supplied `$promiseOrValue`.
@@ -363,7 +354,7 @@ If `$promiseOrValue` is a promise, it will be returned as is.
 #### reject()
 
 ```php
-$promise = React\Promise\reject(\Throwable $reason);
+$promise = Plutonium\Promise\reject(\Throwable $reason);
 ```
 
 Creates a rejected promise for the supplied `$reason`.
@@ -376,7 +367,7 @@ reject a promise, any language error or user land exception can be used to rejec
 #### all()
 
 ```php
-$promise = React\Promise\all(iterable $promisesOrValues);
+$promise = Plutonium\Promise\all(iterable $promisesOrValues);
 ```
 
 Returns a promise that will resolve only once all the items in
@@ -387,7 +378,7 @@ will be an array containing the resolution values of each of the items in
 #### race()
 
 ```php
-$promise = React\Promise\race(iterable $promisesOrValues);
+$promise = Plutonium\Promise\race(iterable $promisesOrValues);
 ```
 
 Initiates a competitive race that allows one winner. Returns a promise which is
@@ -399,7 +390,7 @@ contains 0 items.
 #### any()
 
 ```php
-$promise = React\Promise\any(iterable $promisesOrValues);
+$promise = Plutonium\Promise\any(iterable $promisesOrValues);
 ```
 
 Returns a promise that will resolve when any one of the items in
@@ -407,11 +398,11 @@ Returns a promise that will resolve when any one of the items in
 will be the resolution value of the triggering item.
 
 The returned promise will only reject if *all* items in `$promisesOrValues` are
-rejected. The rejection value will be a `React\Promise\Exception\CompositeException`
+rejected. The rejection value will be a `Plutonium\Promise\Exception\CompositeException`
 which holds all rejection reasons. The rejection reasons can be obtained with
 `CompositeException::getThrowables()`.
 
-The returned promise will also reject with a `React\Promise\Exception\LengthException`
+The returned promise will also reject with a `Plutonium\Promise\Exception\LengthException`
 if `$promisesOrValues` contains 0 items.
 
 Examples
@@ -422,7 +413,7 @@ Examples
 ```php
 function getAwesomeResultPromise()
 {
-    $deferred = new React\Promise\Deferred();
+    $deferred = new Plutonium\Promise\Deferred();
 
     // Execute a Node.js-style function using the callback pattern
     computeAwesomeResultAsynchronously(function (\Throwable $error, $result) use ($deferred) {
@@ -465,7 +456,7 @@ Each call to `then()` returns a new promise that will resolve with the return
 value of the previous handler. This creates a promise "pipeline".
 
 ```php
-$deferred = new React\Promise\Deferred();
+$deferred = new Plutonium\Promise\Deferred();
 
 $deferred->promise()
     ->then(function ($x) {
@@ -505,7 +496,7 @@ Similarly, when you handle a rejected promise, to propagate the rejection,
 (since promise translates thrown exceptions into rejections)
 
 ```php
-$deferred = new React\Promise\Deferred();
+$deferred = new Plutonium\Promise\Deferred();
 
 $deferred->promise()
     ->then(function ($x) {
@@ -517,7 +508,7 @@ $deferred->promise()
     })
     ->catch(function (\Exception $x) {
         // Can also propagate by returning another rejection
-        return React\Promise\reject(
+        return Plutonium\Promise\reject(
             new \Exception($x->getMessage() + 1)
         );
     })
@@ -534,7 +525,7 @@ Just like try/catch, you can choose to propagate or not. Mixing resolutions and
 rejections will still forward handler results in a predictable way.
 
 ```php
-$deferred = new React\Promise\Deferred();
+$deferred = new Plutonium\Promise\Deferred();
 
 $deferred->promise()
     ->then(function ($x) {

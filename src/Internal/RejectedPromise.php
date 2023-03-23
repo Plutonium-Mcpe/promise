@@ -1,10 +1,10 @@
 <?php
 
-namespace React\Promise\Internal;
+namespace Plutonium\Promise\Internal;
 
-use React\Promise\PromiseInterface;
-use function React\Promise\_checkTypehint;
-use function React\Promise\resolve;
+use Plutonium\Promise\PromiseInterface;
+use function Plutonium\Promise\_checkTypehint;
+use function Plutonium\Promise\resolve;
 
 /**
  * @internal

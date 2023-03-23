@@ -1,9 +1,9 @@
 <?php
 
-namespace React\Promise;
+namespace Plutonium\Promise;
 
-use React\Promise\Internal\FulfilledPromise;
-use React\Promise\Internal\RejectedPromise;
+use Plutonium\Promise\Internal\FulfilledPromise;
+use Plutonium\Promise\Internal\RejectedPromise;
 use Exception;
 
 class FunctionResolveTest extends TestCase

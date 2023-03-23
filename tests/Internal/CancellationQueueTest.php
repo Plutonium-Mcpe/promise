@@ -1,12 +1,12 @@
 <?php
 
-namespace React\Promise\Internal;
+namespace Plutonium\Promise\Internal;
 
 use Exception;
-use React\Promise\Deferred;
-use React\Promise\SimpleTestCancellable;
-use React\Promise\SimpleTestCancellableThenable;
-use React\Promise\TestCase;
+use Plutonium\Promise\Deferred;
+use Plutonium\Promise\SimpleTestCancellable;
+use Plutonium\Promise\SimpleTestCancellableThenable;
+use Plutonium\Promise\TestCase;
 
 class CancellationQueueTest extends TestCase
 {

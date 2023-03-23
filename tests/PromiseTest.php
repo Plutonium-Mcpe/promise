@@ -1,9 +1,9 @@
 <?php
 
-namespace React\Promise;
+namespace Plutonium\Promise;
 
 use Exception;
-use React\Promise\PromiseAdapter\CallbackPromiseAdapter;
+use Plutonium\Promise\PromiseAdapter\CallbackPromiseAdapter;
 
 class PromiseTest extends TestCase
 {

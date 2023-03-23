@@ -1,12 +1,12 @@
 <?php
 
-namespace React\Promise\PromiseTest;
+namespace Plutonium\Promise\PromiseTest;
 
 use Exception;
 use InvalidArgumentException;
-use React\Promise\PromiseAdapter\PromiseAdapterInterface;
-use function React\Promise\reject;
-use function React\Promise\resolve;
+use Plutonium\Promise\PromiseAdapter\PromiseAdapterInterface;
+use function Plutonium\Promise\reject;
+use function Plutonium\Promise\resolve;
 
 trait PromiseRejectedTestTrait
 {

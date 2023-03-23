@@ -1,6 +1,6 @@
 <?php
 
-namespace React\Promise;
+namespace Plutonium\Promise;
 
 use Exception;
 use InvalidArgumentException;
@@ -49,7 +49,7 @@ class FunctionCheckTypehintTest extends TestCase
     public function shouldAcceptClosureCallbackWithUnionTypehint()
     {
         eval(
-            'namespace React\Promise;' .
+            'namespace Plutonium\Promise;' .
             'self::assertTrue(_checkTypehint(function (\RuntimeException|\InvalidArgumentException $e) {}, new \InvalidArgumentException()));' .
             'self::assertFalse(_checkTypehint(function (\RuntimeException|\InvalidArgumentException $e) {}, new \Exception()));'
         );

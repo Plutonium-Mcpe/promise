@@ -1,6 +1,6 @@
 <?php
 
-namespace React\Promise;
+namespace Plutonium\Promise;
 
 class CallbackWithoutTypehintClass
 {

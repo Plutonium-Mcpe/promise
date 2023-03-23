@@ -1,13 +1,13 @@
 <?php
 
-namespace React\Promise\Internal;
+namespace Plutonium\Promise\Internal;
 
 use Exception;
 use LogicException;
-use React\Promise\PromiseAdapter\CallbackPromiseAdapter;
-use React\Promise\PromiseTest\PromiseRejectedTestTrait;
-use React\Promise\PromiseTest\PromiseSettledTestTrait;
-use React\Promise\TestCase;
+use Plutonium\Promise\PromiseAdapter\CallbackPromiseAdapter;
+use Plutonium\Promise\PromiseTest\PromiseRejectedTestTrait;
+use Plutonium\Promise\PromiseTest\PromiseSettledTestTrait;
+use Plutonium\Promise\TestCase;
 
 class RejectedPromiseTest extends TestCase
 {
@@ -27,7 +27,7 @@ class RejectedPromiseTest extends TestCase
                 return $promise;
             },
             'resolve' => function () {
-                throw new LogicException('You cannot call resolve() for React\Promise\RejectedPromise');
+                throw new LogicException('You cannot call resolve() for Plutonium\Promise\RejectedPromise');
             },
             'reject' => function (\Throwable $reason) use (&$promise) {
                 if (!$promise) {
