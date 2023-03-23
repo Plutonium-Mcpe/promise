@@ -140,4 +140,15 @@ interface PromiseInterface
      * @see self::finally()
      */
     public function always(callable $onFulfilledOrRejected): PromiseInterface;
+
+	/**
+	 * Waits for the promise to be fulfilled or rejected.
+	 * Use this method only if you know what you are doing, it can cause deadlocks.
+	 */
+	public function wait() : void;
+
+	/**
+	 * Return whether the promise has been resolved.
+	 */
+	public function isResolved() : bool;
 }

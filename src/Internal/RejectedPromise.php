@@ -70,4 +70,12 @@ final class RejectedPromise implements PromiseInterface
     {
         return $this->finally($onFulfilledOrRejected);
     }
+
+	public function wait(): void {
+		// NOOP
+	}
+
+	public function isResolved(): bool {
+		return true;
+	}
 }

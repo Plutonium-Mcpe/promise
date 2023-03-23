@@ -2,7 +2,6 @@ Promise
 =======
 
 [![CI status](https://github.com/Plutonium-Mcpe/promise/workflows/CI/badge.svg)](https://github.com/Plutonium-Mcpe/promise/actions)
-[![installs on Packagist](https://img.shields.io/packagist/dt/react/promise?color=blue&label=installs%20on%20Packagist)](https://packagist.org/packages/plutonium/promise)
 
 > **Initially based on [ReactPHP Promise](https://github.com/reactphp/promise) but adapted for use under [PocketMine-MP](https://github.com/pmmp/PocketMine-MP)**
 

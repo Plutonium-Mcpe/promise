@@ -3,6 +3,7 @@
 namespace Plutonium\Promise;
 
 use Plutonium\Promise\Internal\RejectedPromise;
+use Plutonium\Promise\Utils\PromiseWaiter;
 
 final class Promise implements PromiseInterface
 {
@@ -134,7 +135,15 @@ final class Promise implements PromiseInterface
         return $this->finally($onFulfilledOrRejected);
     }
 
-    private function resolver(callable $onFulfilled = null, callable $onRejected = null): callable
+	public function wait() : void {
+		(new PromiseWaiter($this))->wait();
+	}
+
+	public function isResolved(): bool {
+		return $this->result !== null;
+	}
+
+	private function resolver(callable $onFulfilled = null, callable $onRejected = null): callable
     {
         return function ($resolve, $reject) use ($onFulfilled, $onRejected) {
             $this->handlers[] = static function (PromiseInterface $promise) use ($onFulfilled, $onRejected, $resolve, $reject) {
