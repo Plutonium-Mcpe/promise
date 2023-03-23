@@ -562,7 +562,7 @@ composer require plutonium/promise
 See also the [CHANGELOG](CHANGELOG.md) for details about version upgrades.
 
 This project aims to run on any platform and thus does not require any PHP
-extensions and supports running on PHP 7.1 through current PHP 8+.
+extensions and supports running on PHP 8+.
 It's *highly recommended to use the latest supported PHP version* for this project.
 
 Credits
