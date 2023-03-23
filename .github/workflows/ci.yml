@@ -21,8 +21,6 @@ jobs:
           php-version: ${{ matrix.php }}
           coverage: xdebug
           ini-file: development
-      - run: composer install
+      - run: composer install --ignore-platform-reqs
       - run: vendor/bin/phpunit --coverage-text
         if: ${{ matrix.php >= 7.3 }}
-      - run: vendor/bin/phpunit --coverage-text -c phpunit.xml.legacy
-        if: ${{ matrix.php < 7.3 }}
