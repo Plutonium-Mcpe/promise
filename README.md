@@ -1,8 +1,8 @@
 Promise
 =======
 
-[![CI status](https://github.com/reactphp/promise/workflows/CI/badge.svg)](https://github.com/reactphp/promise/actions)
-[![installs on Packagist](https://img.shields.io/packagist/dt/react/promise?color=blue&label=installs%20on%20Packagist)](https://packagist.org/packages/react/promise)
+[![CI status](https://github.com/Plutonium-Mcpe/promise/workflows/CI/badge.svg)](https://github.com/Plutonium-Mcpe/promise/actions)
+[![installs on Packagist](https://img.shields.io/packagist/dt/react/promise?color=blue&label=installs%20on%20Packagist)](https://packagist.org/packages/plutonium/promise)
 
 > **Initially based on [ReactPHP Promise](https://github.com/reactphp/promise) but adapted for use under [PocketMine-MP](https://github.com/pmmp/PocketMine-MP)**
 
@@ -556,7 +556,7 @@ Once released, this project will follow [SemVer](https://semver.org/).
 At the moment, this will install the latest development version:
 
 ```bash
-composer require react/promise:^3@dev
+composer require plutonium/promise
 ```
 
 See also the [CHANGELOG](CHANGELOG.md) for details about version upgrades.
@@ -564,18 +564,6 @@ See also the [CHANGELOG](CHANGELOG.md) for details about version upgrades.
 This project aims to run on any platform and thus does not require any PHP
 extensions and supports running on PHP 7.1 through current PHP 8+.
 It's *highly recommended to use the latest supported PHP version* for this project.
-
-We're committed to providing long-term support (LTS) options and to provide a
-smooth upgrade path. If you're using an older PHP version, you may use the
-[`2.x` branch](https://github.com/reactphp/promise/tree/2.x) (PHP 5.4+) or
-[`1.x` branch](https://github.com/reactphp/promise/tree/1.x) (PHP 5.3+) which both
-provide a compatible API but do not take advantage of newer language features.
-You may target multiple versions at the same time to support a wider range of
-PHP versions like this:
-
-```bash
-composer require "react/promise:^3@dev || ^2 || ^1"
-```
 
 Credits
 -------
