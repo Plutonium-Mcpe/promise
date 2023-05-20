@@ -2,6 +2,7 @@
 
 namespace Plutonium\Promise\Utils;
 
+use Plutonium\Promise\Adapter\PocketminePromiseAdapter;
 use Plutonium\Promise\Exception\TimeoutException;
 use Plutonium\Promise\PromiseInterface;
 use pocketmine\Server;
@@ -15,18 +16,20 @@ class PromiseWaiter {
 		private PromiseInterface $promise,
 		private int $timeout = 5
 	) {
-		$this->promise->then(function ($result) {
-			$this->result = $result;
-		}, function ($result) {
-			$this->result = $result;
-		})->finally(function () {
-			$this->resolved = true;
-		});
+		if (!$this->promise instanceof PocketminePromiseAdapter) {
+			$this->promise->then(function ($result) {
+				$this->result = $result;
+			}, function ($result) {
+				$this->result = $result;
+			})->finally(function () {
+				$this->resolved = true;
+			});
+		}
 	}
 
 	public function wait() : void {
 		$startTime = microtime(true);
-		while (!$this->resolved) {
+		while (($this->promise instanceof PocketminePromiseAdapter && !$this->promise->isResolved()) || (!$this->promise instanceof PocketminePromiseAdapter && !$this->resolved)) {
 			if (microtime(true) - $startTime > $this->timeout) {
 				throw new TimeoutException();
 			}
