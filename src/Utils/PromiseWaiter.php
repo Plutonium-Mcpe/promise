@@ -16,11 +16,11 @@ class PromiseWaiter {
 		private int $timeout = 5
 	) {
 		$this->promise->then(function ($result) {
-			$this->resolved = true;
 			$this->result = $result;
 		}, function ($result) {
-			$this->resolved = true;
 			$this->result = $result;
+		})->finally(function () {
+			$this->resolved = true;
 		});
 	}
 
