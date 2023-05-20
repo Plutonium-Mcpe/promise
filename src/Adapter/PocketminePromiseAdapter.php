@@ -17,7 +17,7 @@ class PocketminePromiseAdapter implements PromiseInterface {
 	) {
 	}
 
-	public function then(?callable $onFulfilled = null, ?callable $onRejected = null) : \plutoniumEngine\utils\promise\PromiseInterface {
+	public function then(?callable $onFulfilled = null, ?callable $onRejected = null) : PromiseInterface {
 		throw new \Exception("Not supported");
 	}
 
