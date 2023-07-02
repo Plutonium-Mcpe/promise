@@ -4,14 +4,25 @@ namespace Plutonium\Promise\Internal;
 
 use Plutonium\Promise\PromiseInterface;
 use function Plutonium\Promise\resolve;
+use Closure;
 
 /**
  * @internal
+ *
+ * @template Value
+ * @template PromiseError
+ * @template-implements PromiseInterface<Value, PromiseError>
  */
 final class FulfilledPromise implements PromiseInterface
 {
+	/**
+	 * @phpstan-var Value
+	 */
     private $value;
 
+	/**
+	 * @phpstan-param Value $value
+	 */
     public function __construct($value = null)
     {
         if ($value instanceof PromiseInterface) {
@@ -21,7 +32,15 @@ final class FulfilledPromise implements PromiseInterface
         $this->value = $value;
     }
 
-    public function then(callable $onFulfilled = null, callable $onRejected = null): PromiseInterface
+	/**
+	 * @template ClosureReturn
+	 *
+	 * @phpstan-param null|Closure(Value): ClosureReturn $onFulfilled
+	 * @phpstan-param null|Closure(PromiseError): mixed $onRejected
+	 *
+	 * @phpstan-return PromiseInterface<Value, PromiseError>
+	 */
+    public function then(Closure $onFulfilled = null, Closure $onRejected = null): PromiseInterface
     {
         if (null === $onFulfilled) {
             return $this;
@@ -34,12 +53,18 @@ final class FulfilledPromise implements PromiseInterface
         }
     }
 
-    public function catch(callable $onRejected): PromiseInterface
+	/**
+	 * @phpstan-param Closure(PromiseError): mixed $onRejected
+	 */
+    public function catch(Closure $onRejected): PromiseInterface
     {
         return $this;
     }
 
-    public function finally(callable $onFulfilledOrRejected): PromiseInterface
+	/**
+	 * @phpstan-param Closure(): mixed $onFulfilledOrRejected
+	 */
+    public function finally(Closure $onFulfilledOrRejected): PromiseInterface
     {
         return $this->then(function ($value) use ($onFulfilledOrRejected): PromiseInterface {
             return resolve($onFulfilledOrRejected())->then(function () use ($value) {

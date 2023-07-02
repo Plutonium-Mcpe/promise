@@ -2,23 +2,37 @@
 
 namespace Plutonium\Promise\Internal;
 
+use Closure;
 use Plutonium\Promise\PromiseInterface;
+use Throwable;
 use function Plutonium\Promise\_checkTypehint;
 use function Plutonium\Promise\resolve;
 
 /**
  * @internal
+ *
+ * @template Value of Throwable
  */
 final class RejectedPromise implements PromiseInterface
 {
+	/**
+	 * @var Value $reason
+	 */
     private $reason;
 
-    public function __construct(\Throwable $reason)
+	/**
+	 * @phpstan-param Value $reason
+	 */
+    public function __construct(Throwable $reason)
     {
         $this->reason = $reason;
     }
 
-    public function then(callable $onFulfilled = null, callable $onRejected = null): PromiseInterface
+	/**
+	 * @phpstan-param null|Closure(): mixed $onFulfilled
+	 * @phpstan-param null|Closure(Value): mixed $onRejected
+	 */
+    public function then(Closure $onFulfilled = null, Closure $onRejected = null): PromiseInterface
     {
         if (null === $onRejected) {
             return $this;
@@ -26,12 +40,15 @@ final class RejectedPromise implements PromiseInterface
 
         try {
             return resolve($onRejected($this->reason));
-        } catch (\Throwable $exception) {
+        } catch (Throwable $exception) {
             return new RejectedPromise($exception);
         }
     }
 
-    public function catch(callable $onRejected): PromiseInterface
+	/**
+	 * @phpstan-param Closure(Value): mixed $onRejected
+	 */
+    public function catch(Closure $onRejected): PromiseInterface
     {
         if (!_checkTypehint($onRejected, $this->reason)) {
             return $this;
@@ -40,9 +57,12 @@ final class RejectedPromise implements PromiseInterface
         return $this->then(null, $onRejected);
     }
 
-    public function finally(callable $onFulfilledOrRejected): PromiseInterface
+	/**
+	 * @phpstan-param Closure(): mixed $onFulfilledOrRejected
+	 */
+    public function finally(Closure $onFulfilledOrRejected): PromiseInterface
     {
-        return $this->then(null, function (\Throwable $reason) use ($onFulfilledOrRejected): PromiseInterface {
+        return $this->then(null, function (Throwable $reason) use ($onFulfilledOrRejected): PromiseInterface {
             return resolve($onFulfilledOrRejected())->then(function () use ($reason): PromiseInterface {
                 return new RejectedPromise($reason);
             });

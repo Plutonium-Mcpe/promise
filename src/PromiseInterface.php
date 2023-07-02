@@ -2,6 +2,13 @@
 
 namespace Plutonium\Promise;
 
+use Closure;
+use Plutonium\Promise\Exception\TimeoutException;
+
+/**
+ * @template PromiseResult
+ * @template PromiseError
+ */
 interface PromiseInterface
 {
     /**
@@ -28,11 +35,14 @@ interface PromiseInterface
      *  2. `$onFulfilled` and `$onRejected` will never be called more
      *      than once.
      *
-     * @param callable|null $onFulfilled
-     * @param callable|null $onRejected
-     * @return PromiseInterface
+	 * @template ClosureResult
+	 *
+	 * @phpstan-param null|Closure(PromiseResult): ClosureResult $onFulfilled
+	 * @phpstan-param null|Closure(PromiseError): mixed $onRejected
+	 *
+	 * @phpstan-return PromiseInterface<ClosureResult|PromiseResult, PromiseError>
      */
-    public function then(?callable $onFulfilled = null, ?callable $onRejected = null): PromiseInterface;
+    public function then(?Closure $onFulfilled = null, ?Closure $onRejected = null): PromiseInterface;
 
     /**
      * Registers a rejection handler for promise. It is a shortcut for:
@@ -43,11 +53,11 @@ interface PromiseInterface
      *
      * Additionally, you can type hint the `$reason` argument of `$onRejected` to catch
      * only specific errors.
-     *
-     * @param callable $onRejected
-     * @return PromiseInterface
+	 *
+     * @phpstan-param Closure(PromiseError) : mixed $onRejected
+     * @phpstan-return PromiseInterface<PromiseResult, PromiseError>
      */
-    public function catch(callable $onRejected): PromiseInterface;
+    public function catch(Closure $onRejected): PromiseInterface;
 
     /**
      * Allows you to execute "cleanup" type tasks in a promise chain.
@@ -91,10 +101,10 @@ interface PromiseInterface
      *     ->finally('cleanup');
      * ```
      *
-     * @param callable $onFulfilledOrRejected
-     * @return PromiseInterface
+     * @phpstan-param Closure() : mixed $onFulfilledOrRejected
+     * @phpstan-return PromiseInterface<PromiseResult, PromiseError>
      */
-    public function finally(callable $onFulfilledOrRejected): PromiseInterface;
+    public function finally(Closure $onFulfilledOrRejected): PromiseInterface;
 
     /**
      * The `cancel()` method notifies the creator of the promise that there is no
@@ -144,6 +154,8 @@ interface PromiseInterface
 	/**
 	 * Waits for the promise to be fulfilled or rejected.
 	 * Use this method only if you know what you are doing, it can cause deadlocks.
+	 *
+	 * @throws TimeoutException
 	 */
 	public function wait() : void;
 

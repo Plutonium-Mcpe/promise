@@ -2,10 +2,23 @@
 
 namespace Plutonium\Promise;
 
+use Closure;
+use Throwable;
+
+/**
+ * @template ResolveResult
+ * @template RejectResult of Throwable
+ */
 final class Deferred
 {
     private $promise;
+	/**
+	 * @phpstan-var Closure(ResolveResult): void
+	 */
     private $resolveCallback;
+	/**
+	 * @phpstan-var Closure(RejectResult): void
+	 */
     private $rejectCallback;
 
     public function __construct(callable $canceller = null)
@@ -16,17 +29,26 @@ final class Deferred
         }, $canceller);
     }
 
+	/**
+	 * @phpstan-return  PromiseInterface<ResolveResult, RejectResult>
+	 */
     public function promise(): PromiseInterface
     {
         return $this->promise;
     }
 
+	/**
+	 * @phpstan-param ResolveResult $value
+	 */
     public function resolve($value): void
     {
         ($this->resolveCallback)($value);
     }
 
-    public function reject(\Throwable $reason): void
+	/**
+	 * @phpstan-param RejectResult $reason
+	 */
+    public function reject(Throwable $reason): void
     {
         ($this->rejectCallback)($reason);
     }

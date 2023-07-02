@@ -2,6 +2,7 @@
 
 namespace Plutonium\Promise\Adapter;
 
+use Closure;
 use Plutonium\Promise\PromiseInterface;
 use pocketmine\promise\Promise;
 use pocketmine\Server;
@@ -17,7 +18,7 @@ class PocketminePromiseAdapter implements PromiseInterface {
 	) {
 	}
 
-	public function then(?callable $onFulfilled = null, ?callable $onRejected = null) : PromiseInterface {
+	public function then(?Closure $onFulfilled = null, ?Closure $onRejected = null) : PromiseInterface {
 		throw new \Exception("Not supported");
 	}
 
@@ -25,11 +26,11 @@ class PocketminePromiseAdapter implements PromiseInterface {
 		throw new \Exception("Not supported");
 	}
 
-	public function catch(callable $onRejected) : PromiseInterface {
+	public function catch(Closure $onRejected) : PromiseInterface {
 		throw new \Exception("Not supported");
 	}
 
-	public function finally(callable $onFulfilledOrRejected) : PromiseInterface {
+	public function finally(Closure $onFulfilledOrRejected) : PromiseInterface {
 		throw new \Exception("Not supported");
 	}
 
