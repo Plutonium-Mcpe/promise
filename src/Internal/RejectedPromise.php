@@ -29,10 +29,10 @@ final class RejectedPromise implements PromiseInterface
     }
 
 	/**
-	 * @phpstan-param null|Closure(): mixed $onFulfilled
-	 * @phpstan-param null|Closure(Value): mixed $onRejected
+	 * @phpstan-param null|callable(): mixed $onFulfilled
+	 * @phpstan-param null|callable(Value): mixed $onRejected
 	 */
-    public function then(Closure $onFulfilled = null, Closure $onRejected = null): PromiseInterface
+    public function then(callable $onFulfilled = null, callable $onRejected = null): PromiseInterface
     {
         if (null === $onRejected) {
             return $this;
@@ -46,9 +46,9 @@ final class RejectedPromise implements PromiseInterface
     }
 
 	/**
-	 * @phpstan-param Closure(Value): mixed $onRejected
+	 * @phpstan-param callable(Value): mixed $onRejected
 	 */
-    public function catch(Closure $onRejected): PromiseInterface
+    public function catch(callable $onRejected): PromiseInterface
     {
         if (!_checkTypehint($onRejected, $this->reason)) {
             return $this;
@@ -58,9 +58,9 @@ final class RejectedPromise implements PromiseInterface
     }
 
 	/**
-	 * @phpstan-param Closure(): mixed $onFulfilledOrRejected
+	 * @phpstan-param callable(): mixed $onFulfilledOrRejected
 	 */
-    public function finally(Closure $onFulfilledOrRejected): PromiseInterface
+    public function finally(callable $onFulfilledOrRejected): PromiseInterface
     {
         return $this->then(null, function (Throwable $reason) use ($onFulfilledOrRejected): PromiseInterface {
             return resolve($onFulfilledOrRejected())->then(function () use ($reason): PromiseInterface {

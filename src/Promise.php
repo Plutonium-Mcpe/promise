@@ -27,7 +27,7 @@ final class Promise implements PromiseInterface
         $this->call($cb);
     }
 
-    public function then(Closure $onFulfilled = null, Closure $onRejected = null): PromiseInterface
+    public function then(callable $onFulfilled = null, callable $onRejected = null): PromiseInterface
     {
         if (null !== $this->result) {
             return $this->result->then($onFulfilled, $onRejected);
@@ -59,7 +59,7 @@ final class Promise implements PromiseInterface
         );
     }
 
-    public function catch(Closure $onRejected): PromiseInterface
+    public function catch(callable $onRejected): PromiseInterface
     {
         return $this->then(null, static function ($reason) use ($onRejected) {
             if (!_checkTypehint($onRejected, $reason)) {
@@ -70,7 +70,7 @@ final class Promise implements PromiseInterface
         });
     }
 
-    public function finally(Closure $onFulfilledOrRejected): PromiseInterface
+    public function finally(callable $onFulfilledOrRejected): PromiseInterface
     {
         return $this->then(static function ($value) use ($onFulfilledOrRejected) {
             return resolve($onFulfilledOrRejected())->then(function () use ($value) {

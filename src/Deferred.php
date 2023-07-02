@@ -2,7 +2,6 @@
 
 namespace Plutonium\Promise;
 
-use Closure;
 use Throwable;
 
 /**
@@ -13,11 +12,11 @@ final class Deferred
 {
     private $promise;
 	/**
-	 * @phpstan-var Closure(ResolveResult): void
+	 * @phpstan-var callable(ResolveResult): void
 	 */
     private $resolveCallback;
 	/**
-	 * @phpstan-var Closure(RejectResult): void
+	 * @phpstan-var callable(RejectResult): void
 	 */
     private $rejectCallback;
 

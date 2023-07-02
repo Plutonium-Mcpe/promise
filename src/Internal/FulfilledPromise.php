@@ -35,12 +35,12 @@ final class FulfilledPromise implements PromiseInterface
 	/**
 	 * @template ClosureReturn
 	 *
-	 * @phpstan-param null|Closure(Value): ClosureReturn $onFulfilled
-	 * @phpstan-param null|Closure(PromiseError): mixed $onRejected
+	 * @phpstan-param null|callable(Value): ClosureReturn $onFulfilled
+	 * @phpstan-param null|callable(PromiseError): mixed $onRejected
 	 *
 	 * @phpstan-return PromiseInterface<Value, PromiseError>
 	 */
-    public function then(Closure $onFulfilled = null, Closure $onRejected = null): PromiseInterface
+    public function then(callable $onFulfilled = null, callable $onRejected = null): PromiseInterface
     {
         if (null === $onFulfilled) {
             return $this;
@@ -54,17 +54,17 @@ final class FulfilledPromise implements PromiseInterface
     }
 
 	/**
-	 * @phpstan-param Closure(PromiseError): mixed $onRejected
+	 * @phpstan-param callable(PromiseError): mixed $onRejected
 	 */
-    public function catch(Closure $onRejected): PromiseInterface
+    public function catch(callable $onRejected): PromiseInterface
     {
         return $this;
     }
 
 	/**
-	 * @phpstan-param Closure(): mixed $onFulfilledOrRejected
+	 * @phpstan-param callable(): mixed $onFulfilledOrRejected
 	 */
-    public function finally(Closure $onFulfilledOrRejected): PromiseInterface
+    public function finally(callable $onFulfilledOrRejected): PromiseInterface
     {
         return $this->then(function ($value) use ($onFulfilledOrRejected): PromiseInterface {
             return resolve($onFulfilledOrRejected())->then(function () use ($value) {

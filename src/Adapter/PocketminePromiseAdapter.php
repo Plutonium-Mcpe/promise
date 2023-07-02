@@ -18,7 +18,7 @@ class PocketminePromiseAdapter implements PromiseInterface {
 	) {
 	}
 
-	public function then(?Closure $onFulfilled = null, ?Closure $onRejected = null) : PromiseInterface {
+	public function then(?callable $onFulfilled = null, ?callable $onRejected = null) : PromiseInterface {
 		throw new \Exception("Not supported");
 	}
 
@@ -26,11 +26,11 @@ class PocketminePromiseAdapter implements PromiseInterface {
 		throw new \Exception("Not supported");
 	}
 
-	public function catch(Closure $onRejected) : PromiseInterface {
+	public function catch(callable $onRejected) : PromiseInterface {
 		throw new \Exception("Not supported");
 	}
 
-	public function finally(Closure $onFulfilledOrRejected) : PromiseInterface {
+	public function finally(callable $onFulfilledOrRejected) : PromiseInterface {
 		throw new \Exception("Not supported");
 	}
 

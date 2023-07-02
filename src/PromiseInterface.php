@@ -37,12 +37,12 @@ interface PromiseInterface
      *
 	 * @template ClosureResult
 	 *
-	 * @phpstan-param null|Closure(PromiseResult): ClosureResult $onFulfilled
-	 * @phpstan-param null|Closure(PromiseError): mixed $onRejected
+	 * @phpstan-param null|callable(PromiseResult): ClosureResult $onFulfilled
+	 * @phpstan-param null|callable(PromiseError): mixed $onRejected
 	 *
 	 * @phpstan-return PromiseInterface<ClosureResult|PromiseResult, PromiseError>
      */
-    public function then(?Closure $onFulfilled = null, ?Closure $onRejected = null): PromiseInterface;
+    public function then(?callable $onFulfilled = null, ?callable $onRejected = null): PromiseInterface;
 
     /**
      * Registers a rejection handler for promise. It is a shortcut for:
@@ -54,10 +54,10 @@ interface PromiseInterface
      * Additionally, you can type hint the `$reason` argument of `$onRejected` to catch
      * only specific errors.
 	 *
-     * @phpstan-param Closure(PromiseError) : mixed $onRejected
+     * @phpstan-param callable(PromiseError) : mixed $onRejected
      * @phpstan-return PromiseInterface<PromiseResult, PromiseError>
      */
-    public function catch(Closure $onRejected): PromiseInterface;
+    public function catch(callable $onRejected): PromiseInterface;
 
     /**
      * Allows you to execute "cleanup" type tasks in a promise chain.
@@ -101,10 +101,10 @@ interface PromiseInterface
      *     ->finally('cleanup');
      * ```
      *
-     * @phpstan-param Closure() : mixed $onFulfilledOrRejected
+     * @phpstan-param callable() : mixed $onFulfilledOrRejected
      * @phpstan-return PromiseInterface<PromiseResult, PromiseError>
      */
-    public function finally(Closure $onFulfilledOrRejected): PromiseInterface;
+    public function finally(callable $onFulfilledOrRejected): PromiseInterface;
 
     /**
      * The `cancel()` method notifies the creator of the promise that there is no
