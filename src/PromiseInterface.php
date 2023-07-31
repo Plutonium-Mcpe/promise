@@ -40,7 +40,7 @@ interface PromiseInterface
 	 * @phpstan-param null|callable(PromiseResult): ClosureResult $onFulfilled
 	 * @phpstan-param null|callable(PromiseError): mixed $onRejected
 	 *
-	 * @phpstan-return PromiseInterface<ClosureResult|PromiseResult, PromiseError>
+	 * @phpstan-return PromiseInterface<ClosureResult, PromiseError>
      */
     public function then(?callable $onFulfilled = null, ?callable $onRejected = null): PromiseInterface;
 
