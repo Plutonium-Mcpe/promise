@@ -6,8 +6,8 @@ use Closure;
 use Plutonium\Promise\Exception\TimeoutException;
 
 /**
- * @template PromiseResult
- * @template PromiseError
+ * @template-covariant PromiseResult
+ * @template-covariant PromiseError
  */
 interface PromiseInterface
 {
@@ -35,7 +35,7 @@ interface PromiseInterface
      *  2. `$onFulfilled` and `$onRejected` will never be called more
      *      than once.
      *
-	 * @template ClosureResult
+	 * @template-covariant ClosureResult
 	 *
 	 * @phpstan-param null|callable(PromiseResult): ClosureResult $onFulfilled
 	 * @phpstan-param null|callable(PromiseError): mixed $onRejected
